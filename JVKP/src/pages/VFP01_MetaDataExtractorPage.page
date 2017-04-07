@@ -1,0 +1,507 @@
+<!--
+*                                                                                                   *
+*                            Version 1.00                                                           *
+*                                                                                                   *
+* Creation Date: 16.Apr.2015                    m.anandhan                                          *
+* Last Modified: 16.Apr.2015                    m.anandhan                                          *
+*                                                                                                   *
+*                             © 2008 - Accenture - All Rights Reserved                              *
+
+
+-->
+
+
+<apex:page controller="VFC01_MetaDataExtractor" sidebar="false"  docType="html-5.0" showHeader="true" showChat="false" >
+<style>
+    table.gridtable {
+        color:#333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+    table.gridtable th {
+        border-width: 2px;
+        padding: 4px;
+        border-style: solid;
+        border-color: #A9A7D1;
+        background-color: #9491CA;
+    }
+    table.gridtable td {
+        border-width: 2px;
+        padding: 4px;
+        border-style: solid;
+        border-color: #8380AF;
+        background-color: #dedede;
+    }
+    td {
+         text-align: left;  
+         
+     }
+    #blockId
+    {
+        background-color: #F5F5F5;
+    }
+    .popupBackground {
+        color: blue;
+        font-size: 100px;
+        vertical-align: middle;
+        opacity: 0.50;
+        filter: alpha(opacity = 30);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 400px;
+        top: 50px;
+        z-index: 9998;
+    } 
+</style>
+<apex:form >  
+    <apex:actionFunction name="callfind" action="{!toRender}" reRender="tst" >
+        <apex:param id="aname" assignTo="{!showsearchresult}" name="showsearchresult" value="" />
+    </apex:actionFunction>  
+</apex:form>
+<script type="text/javascript">
+        
+        function getRemoteData() {
+            try{
+                var start='{!startdatestr}';                
+                var endd='{!enddatestr}';   
+                var Modifiedbyset='{!Modifiedbyset}';
+                var components='{!components}';
+                var startload='{!startload}';
+                Visualforce.remoting.Manager.invokeAction(
+                    
+                    '{!$RemoteAction.VFC01_MetaDataExtractor.retrieveMetadata}',
+                    startload,components,Modifiedbyset,start,endd, 
+                    function(result, event){                        
+                    if (event.status) {
+                       var table = window.document.getElementById("myTable");
+                       var packageset=[];
+                       if(result!="")
+                       {
+                           var allcomponents=result;                                                 
+                           if(allcomponents[allcomponents.length-1].indexOf(';;;')==0)
+                           {
+                           packageset=allcomponents[allcomponents.length-1].replace(";;;","").split(";");
+                           allcomponents.pop();
+                           }
+                           allcomponents.sort();                           
+                           for (var i = 0; i < allcomponents.length; i++) {                           
+                              if(allcomponents[i]!="") {
+                                    window.document.getElementById("count").innerHTML = "Total components found :" + (i+1);
+                                    var lastRow  = table.rows.length;
+                                    var row = table.insertRow(lastRow);
+                                    var indcomponents=allcomponents[i].split(";;");                                     
+                                    var cell1 = row.insertCell(0);
+                                    var element1 = document.createElement("input");
+                                    element1.type = "checkbox";
+                                    element1.name="chkbox[]";
+                                    element1.checked=true;
+                                    cell1.appendChild(element1);
+                                    componame=indcomponents[1];
+                                    for (var j = 0; j < indcomponents.length; j++)
+                                    {
+                                       var found=false;
+                                       var cell1 = row.insertCell(-1);
+                                       if(indcomponents[j]!="null" && indcomponents[j]!="")     
+                                        {                                       
+                                            cell1.innerHTML = indcomponents[j];                                              
+                                        }                                         
+                                        else
+                                        {
+                                            for(var k=0;k<packageset.length;k++) {
+                                                if(found==false)    {
+                                                    if(componame.indexOf(packageset[k])==0 && componame!=packageset[k]+"c")
+                                                    {
+                                                        found=true;
+                                                        cell1.innerHTML = packageset[k].replace("__","");                                                 
+                                                    }
+                                                    else    {
+                                                     cell1.innerHTML = ""; 
+                                                    } 
+                                                }    
+                                            }   
+                                        }                                                      
+                                    }
+                                }                            
+                            }
+                        }
+                        else
+                        {                           
+                           window.document.getElementById("responsesuccess").innerHTML = "";
+                           window.document.getElementById("responseErrors").innerHTML = "No components found matching your search criteria."
+                        }
+                    }
+                    else if (event.type === 'exception') {
+                        window.document.getElementById("responsesuccess").innerHTML = "";
+                        var errorstring=event.message;
+                        if(errorstring.search("UNKNOWN_EXCEPTION")!=-1)
+                        {
+                            window.document.getElementById("responseErrors").innerHTML = "Something Went wrong. Please try again in sometime";
+                        }
+                        else if(errorstring.search("3000000")!=-1)
+                        {                            
+                            window.document.getElementById("responseErrors").innerHTML = "Exceeded maximum components to be checked.<br/> Please refine the component types need to be searched";
+                        }                        
+                        else if(errorstring.search("=sf:")!=-1)
+                        {
+                            window.document.getElementById("responseErrors").innerHTML = (errorstring.split("=sf:")[0]).split("SOAP Fault:")[1];
+                        }
+                        else if(errorstring.search("Exception:")!=-1)
+                        {                            
+                            window.document.getElementById("responseErrors").innerHTML = errorstring.split("Exception:")[1];
+                        }                                                
+                        else
+                        {
+                            window.document.getElementById("responseErrors").innerHTML = errorstring.substr(errorstring.search(":")+1);
+                        }
+                    } 
+                    else {
+                        window.document.getElementById("responsesuccess").innerHTML = "";
+                        window.document.getElementById("responseErrors").innerHTML = event.message;                    
+                    }
+                    }, 
+                    {escape: true, timeout: 120000}
+                    );                     
+                    window.setTimeout(callfind,4000);                    
+        } 
+        catch(error)
+        {
+            alert(error);
+           
+            window.setTimeout(callfind,4000);         
+        }            
+        }
+</script>
+<script>
+;(function () {
+
+  var object = typeof exports != 'undefined' ? exports : this; // #8: web workers
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+  function InvalidCharacterError(message) {
+    this.message = message;
+  }
+  InvalidCharacterError.prototype = new Error;
+  InvalidCharacterError.prototype.name = 'InvalidCharacterError';
+
+  // encoder
+  object.btoa || (
+  object.btoa = function (input) {
+    var str = String(input);
+    for (
+      // initialize result and counter
+      var block, charCode, idx = 0, map = chars, output = '';
+      // if the next str index does not exist:
+      //   change the mapping table to "="
+      //   check if d has no fractional digits
+      str.charAt(idx | 0) || (map = '=', idx % 1);
+      // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+      output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+    ) {
+      charCode = str.charCodeAt(idx += 3/4);
+      if (charCode > 0xFF) {
+        throw new InvalidCharacterError("'btoa' failed: The string to be encoded contains characters outside of the Latin1 range.");
+      }
+      block = block << 8 | charCode;
+    }
+    return output;
+  });
+
+  // decoder
+  object.atob || (
+  object.atob = function (input) {
+    var str = String(input).replace(/=+$/, '');
+    if (str.length % 4 == 1) {
+      throw new InvalidCharacterError("'atob' failed: The string to be decoded is not correctly encoded.");
+    }
+    for (
+      // initialize result and counters
+      var bc = 0, bs, buffer, idx = 0, output = '';
+      // get next character
+      buffer = str.charAt(idx++);
+      // character found in table? initialize bit storage and add its ascii value;
+      ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer,
+        // and if not first of each 4 characters,
+        // convert the first 8 bits to one ascii character
+        bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0
+    ) {
+      // try to find character in table (0-63, not found => -1)
+      buffer = chars.indexOf(buffer);
+    }
+    return output;
+  });
+
+}());
+
+</script>
+
+<script type="text/javascript">__sfdcSessionId = '{!$Api.Session_Id}';</script>
+<script src="/soap/ajax/29.0/connection.js" type="text/javascript"></script>  
+<script type="text/javascript">
+function createDocument() {  
+try{ 
+    var document = new sforce.SObject('Document');
+    var now = new Date();
+    document.Name = 'ModifiedComponents.xls';
+    var table = window.document.getElementById("myTable");
+    var file=table.rows[0].cells[1].innerHTML +'\t'+table.rows[0].cells[2].innerHTML +'\t'+table.rows[0].cells[3].innerHTML +'\t'+table.rows[0].cells[4].innerHTML +'\t'+table.rows[0].cells[5].innerHTML +'\n';
+    var lastRow  = table.rows.length-1;
+    var i=1;
+    while(i<=lastRow)
+    {
+        var chkbox = table.rows[i].cells[0].childNodes[0];
+        if(null != chkbox && true == chkbox.checked) { 
+            file=file+table.rows[i].cells[1].innerHTML +'\t'+table.rows[i].cells[2].innerHTML +'\t'+table.rows[i].cells[3].innerHTML +'\t'+table.rows[i].cells[4].innerHTML +'\t'+table.rows[i].cells[5].innerHTML +'\n';
+            i=i+1;
+        }
+        else
+        {
+            i=i+1;
+        }
+    }
+    document.Body = window.btoa(file);
+    document.FolderId = '{!FolderId}';
+    document.ContentType = 'application/vnd.ms-excel'; 
+    result = sforce.connection.create([document]);
+    if(!result[0].getBoolean("success")) {
+        alert("Failed to create document");
+    } else {
+        window.open('/servlet/servlet.FileDownload?file=' + result[0].id);
+    }
+    
+}
+catch(err)
+    {alert(err);}
+}
+
+function createxmlDocument() {  
+try{ 
+    var document = new sforce.SObject('Document');
+    var now = new Date();
+    document.Name = 'Package.xml';
+    var file='<?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">';
+    var table = window.document.getElementById("myTable");
+    var lastRow  = table.rows.length-1;
+    var members='';
+    var i=1;
+    while(i<=lastRow)
+    {
+        var chkbox = table.rows[i].cells[0].childNodes[0];
+        if(null != chkbox && true == chkbox.checked) { 
+            var currentctype=table.rows[i].cells[1].innerHTML;
+            var nextctype='';
+            members=members+'<members>'+table.rows[i].cells[2].innerHTML+'</members>';  
+            i=i+1;
+            while(i<=lastRow) {             
+                var chkbox = table.rows[i].cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                        var nextctype=table.rows[i].cells[1].innerHTML;
+                        break;                  
+                }
+                else
+                {
+                    i=i+1;
+                }
+            }           
+            if(nextctype!=currentctype)
+            {
+                file=file+'<types>'+members+'<name>'+currentctype+'</name></types>';
+                var members='';
+            }
+        }
+        else
+        {
+            i=i+1;
+        }
+    }
+    file=file+'<version>32.0</version></Package>';
+    document.Body = window.btoa(file);
+    document.FolderId = '{!FolderId}';
+    document.ContentType = 'application/xml'; 
+    result = sforce.connection.create([document]);
+    if(!result[0].getBoolean("success")) {
+        alert("Failed to create document");
+    } else {
+        window.open('/servlet/servlet.FileDownload?file=' + result[0].id);
+    }
+    
+}
+catch(err)
+    {alert(err);}
+}
+
+function checkAll(ele) {
+     var checkboxes = document.getElementsByTagName('input');
+     if (ele.checked) {
+         for (var i = 0; i < checkboxes.length; i++) {
+             if (checkboxes[i].type == 'checkbox') {
+                 checkboxes[i].checked = true;
+             }
+         }
+     } else {
+         for (var i = 0; i < checkboxes.length; i++) {             
+             if (checkboxes[i].type == 'checkbox') {
+                 checkboxes[i].checked = false;
+             }
+         }
+     }
+}
+
+function checkuncheckpackage(ele) {
+     var table = window.document.getElementById("myTable");
+     var lastRow  = table.rows.length;
+     if (ele.checked) {
+         for (var i = 1; i < lastRow; i++) {
+             if (table.rows[i].cells[5].innerHTML != '' || table.rows[i].cells[1].innerHTML == 'InstalledPackage' ) {
+                 table.rows[i].cells[0].childNodes[0].checked = true;
+             }
+         }
+     } 
+     else {
+         for (var i = 1; i < lastRow; i++) {             
+             if (table.rows[i].cells[5].innerHTML != ''|| table.rows[i].cells[1].innerHTML == 'InstalledPackage' ) {
+                 table.rows[i].cells[0].childNodes[0].checked = false;
+             }
+         }
+     }
+}
+
+</script>
+
+<apex:form id="frm" title="MetaData extraction" style="width:100%;height:100%;background-color:#F5F5F5;"> 
+<apex:image style="position:absolute;" height="60px" width="120px" value="{!$Resource.DeploymentToolLogo}" />  
+<apex:image style="position:absolute;right:10px;" height="60px" width="120px" value="{!$Resource.Accenture}" />   
+<div style="height:65px;"><br/><center><apex:outputLabel style="font-size:20px;font-family:comic sans ms;color:#9491CA;"><b>MetaData Extractor </b></apex:outputLabel></center></div>
+<apex:pageBlock tabStyle="account" >
+    <apex:messages style="color:red;">
+    </apex:messages>      
+      <apex:pageBlockSection title="Search Criteria" columns="1">         
+      <center>
+      <apex:outputPanel >       
+      <apex:outputPanel id="tst">
+          <center><apex:commandButton value="Retrieve" action="{!loadmetadata}" disabled="{!startload}" /></center>   <br/>
+           <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!startload}" >
+                <img class="waitingImage" src="/img/loading.gif"/>
+                <apex:outputLabel style="font-size:20px;"> Processing... </apex:outputLabel>          
+            </apex:outputPanel>                                             
+          </apex:outputPanel>   
+       
+      <div id="blockId">
+          <table width="100%">
+              <tr>
+                  <td width="20%"></td>
+                  <td width="10%"><apex:outputLabel ><b>Start Date </b></apex:outputLabel></td>
+                  <td width="50%"><apex:input type="auto" value="{!startdate}"/></td>
+                  <td width="20%"></td>
+              </tr>
+              <tr height="10px">
+              </tr>
+              <tr>
+                  <td></td>
+                  <td><apex:outputLabel ><b>End Date </b></apex:outputLabel></td>
+                  <td> <apex:input type="auto" value="{!enddate}"/></td>
+                  <td></td>
+              </tr>
+              <tr height="10px">
+              </tr>
+              <tr>
+                  <td></td>
+                  <td><apex:outputLabel ><b>Modified By</b></apex:outputLabel></td>
+                  <td>
+                      <table>
+                            <tr>
+                                <th rowspan="2"> 
+                                    <apex:selectList multiselect="true"  style="width:250px;" size="8" value="{!Modifiedby}" >
+                                   <apex:selectOptions value="{!Modifiedbyvalues}"/>
+                                     </apex:selectList>
+                                </th>
+                                <td style="vertical-align:middle;padding: 8px;" >
+                                     <apex:commandButton style="width:20px;" action="{!SelectModifiedby}" value=">" reRender="frm" />
+                                </td>
+                                <th rowspan="2">
+                                   <apex:selectList multiselect="true"  style="width:250px;" size="8" value="{!selectedModifiedby}">
+                                    <apex:selectOption itemValue="All" itemLabel="All" itemDisabled="true" rendered="{!selectedModifiedbyvalues.size==0}"/>
+                                    <apex:selectOptions value="{!selectedModifiedbyvalues}"/>
+                                     </apex:selectList>
+                                 </th>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:middle;padding: 8px;">
+                                    <apex:commandButton style="width:20px;" reRender="frm" action="{!removeModifiedby}" value="<"  />
+                                </td>
+                            </tr>
+                        </table>
+                  </td>
+                  <td></td>
+              </tr>
+              <tr>
+              <tr height="10px">
+              </tr>
+                  <td></td>
+                  <td><apex:outputLabel ><b>Components</b></apex:outputLabel></td>
+                  <td>                    
+                        <table>
+                            <tr>
+                                <th rowspan="2"> 
+                                    <apex:selectList multiselect="true"  style="width:250px;" size="8" value="{!MetadataComponents}" >
+                                    <apex:selectOptions value="{!MetadataComponentvalues}"/>
+                                     </apex:selectList>
+                                </th>
+                                <td style="vertical-align:middle;padding: 8px;">
+                                    <apex:commandButton style="width:20px;" action="{!SelectComponent}" value=">" reRender="frm" />
+                                </td>
+                                <th rowspan="2">
+                                    <apex:selectList multiselect="true"  style="width:250px;" size="8" value="{!selectedMetadataComponents}">
+                                    <apex:selectOption itemValue="All" itemLabel="All" itemDisabled="true" rendered="{!selectedMetadataComponentvalues.size==0}"/>
+                                    <apex:selectOptions value="{!selectedMetadataComponentvalues}"/>
+                                    </apex:selectList>
+                                 </th>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:middle;padding: 8px;">
+                                    <apex:commandButton style="width:20px;" reRender="frm" action="{!removeComponent}" value="<"  />
+                                </td>
+                            </tr>
+                        </table>
+                  </td>
+              <td></td>
+            </tr>
+          </table>
+        </div>  
+      
+      </apex:outputPanel>     
+       </center>  
+      </apex:pageBlockSection>
+      <apex:pageBlockSection columns="1" title="Search Result" >      
+      <apex:outputPanel >
+      <center>
+      <apex:outputText value="{!callfunc}" escape="false"></apex:outputText>      
+      <b><div id="count"></div></b><br/> 
+      <apex:outputPanel rendered="{!startload}" >   
+       <div id="responsesuccess">      
+      <button id="toexcel" onclick="createDocument();return false;">To Excel</button> 
+       <button id="toxml" onclick="createxmlDocument();return false;">To Package.xml</button>  <br/>  <br/> 
+       <b><input type="checkbox" name="PackageAllowed" value="Include Installed Package Components?" onchange="checkuncheckpackage(this)" checked="true">Include Packaged components? </input></b>
+      <br/>  <br/> 
+      <table id="myTable" class="gridtable" width="100%" border="1"  >
+               <tr>
+               <th width="2%"><INPUT type="checkbox" onchange="checkAll(this)" name="chk[]" checked="true"/></th>
+               <th width="13%">Component Type</th>
+               <th width="40%">Component Name</th>
+               <th width="18%">Last Modified By</th>
+               <th width="17%">Last Modified Date</th> 
+               <th width="10%">Package</th>
+               </tr>              
+      </table>
+      </div>
+      </apex:outputPanel>
+    <b><div id="responseErrors"></div></b>   
+    </center>    
+    </apex:outputPanel>  
+    
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+       
+</apex:form>
+</apex:page>

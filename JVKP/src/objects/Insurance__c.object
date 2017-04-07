@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Benefits_Administrator__c</fullName>
+        <externalId>false</externalId>
+        <label>Benefits Administrator</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Capitated_Plan__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Capitated Plan</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Department__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Department</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Effective_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Employer_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Employer Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employer_Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Employer Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>FEP__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>FEP</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Group_Plan_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Group/Plan Number</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Insurance_Payer_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Insurance Payer Name</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OIP_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>OIP Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OIP_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>OIP Role</label>
+        <picklist>
+            <picklistValues>
+                <fullName>managed Medical Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Utilization Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Other_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Number</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_State_Fed_Funded_Plan__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Other State/ Fed Funded Plan</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PBM__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PBM</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Unconsented Patient</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Insurance (PBM)</relationshipLabel>
+        <relationshipName>Insurance1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Patient_ID__c</fullName>
+        <displayFormat>A-{0000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Patient ID</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Patient__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Patient</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Insurance Account</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Insurance</relationshipLabel>
+        <relationshipName>Insurance</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Plan_Sub_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Plan Sub Type</label>
+        <picklist>
+            <controllingField>Plan_Type__c</controllingField>
+            <picklistValues>
+                <fullName>EPO</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HMO</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+                <controllingFieldValues>Medicaid</controllingFieldValues>
+                <controllingFieldValues>SCHIP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indemnity</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IPA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PBM</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+                <controllingFieldValues>Medicaid</controllingFieldValues>
+                <controllingFieldValues>Military</controllingFieldValues>
+                <controllingFieldValues>SCHIP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>POS</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PPO</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <controllingFieldValues>Commercial</controllingFieldValues>
+                <controllingFieldValues>HIX - Health Insurance Exchange</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - Fed/PCIP</controllingFieldValues>
+                <controllingFieldValues>High Risk Pool - State</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP - Indequate Coverage</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP - Loss of Dependent Status</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP - Low Annual Max</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP - Low LTM</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP - No Coverage</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP - Non US Citizen</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP - Pre-EX</fullName>
+                <default>false</default>
+                <controllingFieldValues>CAP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>State Program</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicaid</controllingFieldValues>
+                <controllingFieldValues>SCHIP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part A</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part B</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part C HMO</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part C Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part C PBM</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part C POS</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part C PPO</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part D Supplement</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare Part D/Sponsor</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supplemental/Medigap</fullName>
+                <default>false</default>
+                <controllingFieldValues>Medicare</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Military Network</fullName>
+                <default>false</default>
+                <controllingFieldValues>Military</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Military Supplemental</fullName>
+                <default>false</default>
+                <controllingFieldValues>Military</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Plan_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Plan Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Commercial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Correctional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High Risk Pool - Fed/PCIP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High Risk Pool - State</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HIX - Health Insurance Exchange</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicaid</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medicare</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCHIP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Policy_Holder_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Policy Holder Name</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Policy_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Policy Number</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relation__c</fullName>
+        <externalId>false</externalId>
+        <label>Relation</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Self</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Primary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tertiary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Self_Insured__c</fullName>
+        <externalId>false</externalId>
+        <label>Self Insured</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Third_Party_Administrator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Third Party Administrator</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Insurance</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>INS-{0000}</displayFormat>
+        <label>Insurance ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Insurance</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Insurance</fullName>
+        <active>true</active>
+        <label>Insurance</label>
+        <picklistValues>
+            <picklist>OIP_Role__c</picklist>
+            <values>
+                <fullName>Utilization Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>managed Medical Group</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Plan_Sub_Type__c</picklist>
+            <values>
+                <fullName>CAP - Indequate Coverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAP - Loss of Dependent Status</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAP - Low Annual Max</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAP - Low LTM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAP - No Coverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAP - Non US Citizen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAP - Pre-EX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IPA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indemnity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part C HMO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part C PBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part C POS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part C PPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part D Supplement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare Part D%2FSponsor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military Supplemental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supplemental%2FMedigap</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Plan_Type__c</picklist>
+            <values>
+                <fullName>CAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commercial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Correctional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HIX - Health Insurance Exchange</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk Pool - Fed%2FPCIP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Risk Pool - State</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicaid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medicare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCHIP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Relation__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Role__c</picklist>
+            <values>
+                <fullName>Primary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tertiary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Self_Insured__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>self_insured_validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( ISPICKVAL( Self_Insured__c , &apos;Yes&apos;) , ISBLANK( Employer_Name__c )  ||  ISBLANK( Employer_Phone__c )  || ISBLANK( Benefits_Administrator__c ) , null)</errorConditionFormula>
+        <errorMessage>employer name,employer phone &amp; benefits administrator must be entered</errorMessage>
+    </validationRules>
+</CustomObject>

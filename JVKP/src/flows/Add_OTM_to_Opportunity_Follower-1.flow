@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>Add_as_follower_or_skip</name>
+        <label>Add as follower or skip</label>
+        <locationX>376</locationX>
+        <locationY>126</locationY>
+        <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
+        <rules>
+            <name>Add_as_follower</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varT_SubscriberDetail</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Opportunity_Team_Member_To_Opportunity_Follower</targetReference>
+            </connector>
+            <label>Add as follower</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Add OTM To {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Add OTM to Opportunity Follower</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Opportunity_Team_Member_To_Opportunity_Follower</name>
+        <label>Opportunity Team Member To Opportunity Follower</label>
+        <locationX>381</locationX>
+        <locationY>297</locationY>
+        <inputAssignments>
+            <field>ParentId</field>
+            <value>
+                <elementReference>Sov_OpportunityTeamMember.OpportunityId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SubscriberId</field>
+            <value>
+                <elementReference>Sov_OpportunityTeamMember.UserId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>EntitySubscription</object>
+    </recordCreates>
+    <recordLookups>
+        <name>Check_Follower_Detail</name>
+        <label>Check Follower Detail</label>
+        <locationX>174</locationX>
+        <locationY>126</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Add_as_follower_or_skip</targetReference>
+        </connector>
+        <filters>
+            <field>ParentId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Sov_OpportunityTeamMember.OpportunityId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SubscriberId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Sov_OpportunityTeamMember.UserId</elementReference>
+            </value>
+        </filters>
+        <object>EntitySubscription</object>
+        <outputAssignments>
+            <assignToReference>varT_SubscriberDetail</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <startElementReference>Check_Follower_Detail</startElementReference>
+    <variables>
+        <name>Sov_OpportunityTeamMember</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>OpportunityTeamMember</objectType>
+    </variables>
+    <variables>
+        <name>varT_SubscriberDetail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

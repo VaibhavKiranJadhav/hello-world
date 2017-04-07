@@ -1,0 +1,27 @@
+<apex:page id="myPage">
+<apex:form id="form">
+submit phone number: <input type="text" id="Mobile"/>
+<apex:commandButton value="check" onclick="validation();"/>
+</apex:form>
+<script type="text/javascript">
+function validation()
+{
+  alert("js");
+  var phNum = document.getElementById("myPage:form:Mobile").value;
+  alert("num is:"+phNum.value);
+  if(isNan(phNum.value))
+  {
+  alert("enter digit");
+  }
+  else
+  {
+   alert("----");
+   }
+  
+}
+
+
+
+</script>
+  
+</apex:page>

@@ -1,0 +1,48 @@
+<apex:page id="pg">
+ <apex:form id="frm">
+
+  <apex:outputLabel value="Phone"></apex:outputLabel>
+  <apex:inputText id="Phone"/><br></br>
+  
+  <apex:outputLabel value="Password"></apex:outputLabel>
+  <apex:inputText id="Password"/> <br></br>
+  
+ <input type="submit" id="Validate" value="Validate" onclick="validate();"/>
+</apex:form>
+ 
+<script type="text/javascript" >
+
+function validate()
+{
+
+var Phonenum=document.getElementById("{!$Component.pg.frm.Phone}").value;
+//document.write("Phone"+Phonenum);
+var mobPattern = /^(9)\d{3}\d{3}\d{3}$/;
+var passwrd=document.getElementById("{!$Component.pg.frm.Password}").value;
+//document.write("Password"+passwrd);
+var passpattern=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}/;
+if(mobPattern.test(Phonenum))
+{
+window.alert("Phone number is proper");
+}
+else
+{
+
+window.alert("Enter phone number in proper format");
+
+}
+if(passpattern.test(passwrd))
+{
+window.alert("Password is proper");
+}
+else
+{
+
+window.alert("Enter Password in proper format");
+
+}
+
+}
+
+</script>
+</apex:page>
