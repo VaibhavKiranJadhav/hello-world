@@ -1,0 +1,89 @@
+<apex:page standardController="Duplicate_Account__c" extensions="ext" id="pg">
+<apex:form id="frm" >
+<apex:pageBlock id="pb" >
+
+<apex:pageBlockSection id="pbs" >
+<apex:pageBlockSectionItem id="pbsi">
+
+<Apex:outputText value="Select State" ></Apex:outputText>
+<apex:inputField id="sts" value="{!Duplicate_Account__c.States__c}" >
+  <apex:actionSupport event="onchange" reRender="pan1, pan2, pan3,pan4"/>
+</apex:inputField>
+
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+
+<apex:outputPanel id="pan1">
+
+<apex:pageBlockSection title="State1 Details" rendered="{!(if(Duplicate_Account__c.States__c=='State1',true,false) || Contains(Duplicate_Account__c.States__c,'State1') )}">
+<apex:inputField value="{!Duplicate_Account__c.Address__c}"/> 
+
+</apex:pageBlockSection> 
+</apex:outputPanel>
+
+<apex:outputPanel id="pan2">
+<apex:pageBlockSection title="State2 Details" rendered="{!(if(Duplicate_Account__c.States__c=='State2',true,false) || Contains(Duplicate_Account__c.States__c,'State2'))}">
+<apex:inputField value="{!Duplicate_Account__c.Status__c}"/>
+</apex:pageBlockSection>
+</apex:outputPanel>
+
+<apex:outputPanel id="pan3">
+<apex:pageBlockSection title="State3 Details" rendered="{!if(Duplicate_Account__c.States__c=='State3',true,false) || Contains(Duplicate_Account__c.States__c,'State3')}">
+<apex:inputField value="{!Duplicate_Account__c.Date__c}"/>
+</apex:pageBlockSection> 
+</apex:outputPanel>
+
+</apex:pageBlock>
+<input type ="submit" value ="Save" id ="save" onclick ="Save()"/>
+</apex:form>
+
+<script type="text/javascript" >
+
+function Save()
+{
+
+var stateval = document.getElementById("{!$Component.pg.frm.Pb.pbs.pbsi.sts}").value;
+
+if(stateval == "None")
+{
+<!--document.write('entered'+stateval); -->
+var test = confirm("Are you sure Want to select None as state");
+<!---alert('valueoftest' +test); --->
+if(test == true)
+{
+    alert("Select value other than NONE");
+}
+else
+{
+var test2=prompt('Enter the state value','AP');
+
+}
+
+if(test2 == 'AP')
+{
+
+window.open("https://en.wikipedia.org/wiki/Andhra_Pradesh");
+
+}
+else
+ {
+ window.open("https://www.google.co.uk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8");
+ }
+
+}
+}
+
+</script>
+
+ <!--function getConfirmation(){
+               var retVal = confirm("Do you want to continue ?");
+               if( retVal == true ){
+                  document.write ("User wants to continue!");
+                  return true;
+               }
+               else{
+                  document.write ("User does not want to continue!");
+                  return false;
+               }
+            } -->
+</apex:page>

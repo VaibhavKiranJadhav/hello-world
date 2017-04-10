@@ -1,0 +1,62 @@
+<apex:page Controller="Userpagecontroller">
+<apex:form >
+<apex:pageBlock title="New User">
+<apex:pageMessages />
+<apex:pageBlockButtons location="Bottom">
+<apex:commandButton action="{!Save}" value="Save"/>
+<!--<apex:commandButton action="{!Save1}" value="Login"/> --->
+
+ </apex:pageBlockButtons>
+ <apex:pageBlockSection >
+<apex:outputtext value="Lastname"></apex:outputText>
+<apex:inputtext value="{!lastname}"/>
+<apex:outputtext value="Alias"></apex:outputText>
+<apex:inputtext value="{!Alias}"/>
+<apex:outputtext value="Email"></apex:outputText>
+<apex:inputtext value="{!Email}"/>
+<apex:outputText value="Username"></apex:outputText>
+<apex:inputtext value="{!Username}"/>
+<apex:outputText value="Password"></apex:outputText>
+<apex:inputSecret value="{!password}"/>
+
+<apex:selectList size="1" value="{!selectedEncodingVal}" label="Email Encoding"  > 
+<apex:selectOptions value="{!encodingOtptions}" /> 
+</apex:selectList>
+
+<apex:selectList size="1" value="{!Roleval}" label="Role" id="rol"  > 
+<apex:selectOptions value="{!roleOtptions}" /> 
+<!---<apex:actionSupport event="onchange"/> --->
+</apex:selectList>  
+
+<apex:selectList size="1" value="{!Localeval}" label="Locale"  > 
+<apex:selectOptions value="{!LocaleOtptions}" /> 
+</apex:selectList>  
+
+<apex:selectList size="1" value="{!ProfileVal}" label="Profile" id="prof" > 
+<apex:selectOptions value="{!ProfileOtptions}" /> 
+<!--<apex:actionSupport event="onchange"/>--->
+</apex:selectList> 
+
+<apex:selectList size="1" value="{!Languageval}" label="Language"  > 
+<apex:selectOptions value="{!LanguageOtptions}" /> 
+</apex:selectList>  
+
+<apex:selectList size="1" value="{!UserLicenseval}" label="User License" id="lic"  > 
+<apex:selectOptions value="{!UserLicenseOtptions}" /> 
+<!---<apex:actionSupport event="onchange" reRender="rol,prof"/> --->
+</apex:selectList>  
+
+<apex:selectList size="1" value="{!TimeZoneVal}" label="Time Zone"  > 
+<apex:selectOptions value="{!TimeZoneOtptions}" /> 
+</apex:selectList>
+
+
+
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+
+ 
+
+</apex:page>
